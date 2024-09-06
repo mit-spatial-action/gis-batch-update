@@ -1,5 +1,6 @@
 .DS_Store
 gis_data/*
+!gis_data/*.md
 renv/*
 *.pdf
 
