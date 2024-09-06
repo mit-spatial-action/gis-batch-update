@@ -18,54 +18,7 @@ Boundaries of boroughs with water areas excluded.
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:01:35.629031 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
-
----
-
-
-## Parks Properties (`openspace`) — 🌏
-
-### [NYC Open Data](https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve/about_data) (2024)
-
-According to NYC open data, "identifies property managed partially or solely by NYC Parks"
-
-### Fields
-| Name | Type | Description |
-| --- | --- | --- |
-| `id` | character | Unique identifier. |
-| `name` | character | Site name. |
-| `borough` | character | Which NYC borough the site is in. |
-
-### Geometry
-
-| Type | CRS |
-| --- | --- |
-| MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
-
-`Downloaded at 2024-09-06 12:01:39.738373 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
-
----
-
-
-## Municipalities (New York and Adjacent States) (`munis`) — 🌏
-
-### [New York State GIS Clearinghouse](https://gis.ny.gov/civil-boundaries) (2024), [New Jersey Office of GIS](https://arc-gis-hub-home-arcgishub.hub.arcgis.com/datasets/newjersey::municipal-boundaries-of-nj/explore?location=39.788059%2C-74.706072%2C8.64) (2024), [Connecticut Department of Energy & Environmental Protection](https://deepmaps.ct.gov/maps/82672ae5f3764021b9a4804f524f928b/about) (2023)
-
-Municipal boundaries for New York, New Jersey, and Connecticut.
-
-### Fields
-| Name | Type | Description |
-| --- | --- | --- |
-| `name` | character | Name of municipality. |
-| `state` | character | 2-character state abbreviation. |
-
-### Geometry
-
-| Type | CRS |
-| --- | --- |
-| MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
-
-`Downloaded at 2024-09-06 12:01:46.068616 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:07:50.696951 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -88,7 +41,7 @@ Building footprints in New York City.
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:04:00.806887 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:10:15.944685 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -113,7 +66,7 @@ Subway routes drawn from the MTA's [GTFS](https://gtfs.org/#) feed.
 | --- | --- |
 | MULTILINESTRING | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:04:04.502292 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:10:22.057571 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -136,22 +89,23 @@ Subway stops drawn from the MTA's [GTFS](https://gtfs.org/#) feed.
 | --- | --- |
 | POINT | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:04:04.505707 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:10:22.098603 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
 
-## Bike Facilities (`bike_facilities`) — 🌏
+## Parks Properties (`openspace`) — 🌏
 
-### [NYC Open Data](https://data.cityofnewyork.us/dataset/New-York-City-Bike-Routes-Map-/9e2b-mctv) (2024)
+### [NYC Open Data](https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve/about_data) (2024)
 
-According to NYC open data, "contains records of the current... network of designated bicycle routes and facilities.
+According to NYC open data, "identifies property managed partially or solely by NYC Parks"
 
 ### Fields
 | Name | Type | Description |
 | --- | --- | --- |
 | `id` | numeric | Unique identifier. |
-| `street` | character | Name of street on which facility segment lies. |
+| `name` | NULL | Site name. |
+| `borough` | NULL | Which NYC borough the site is in. |
 
 ### Geometry
 
@@ -159,7 +113,30 @@ According to NYC open data, "contains records of the current... network of desig
 | --- | --- |
 | MULTILINESTRING | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:04:10.320203 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:10:24.315779 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+
+---
+
+
+## Municipalities (New York and Adjacent States) (`munis`) — 🌏
+
+### [New York State GIS Clearinghouse](https://gis.ny.gov/civil-boundaries) (2024), [New Jersey Office of GIS](https://arc-gis-hub-home-arcgishub.hub.arcgis.com/datasets/newjersey::municipal-boundaries-of-nj/explore?location=39.788059%2C-74.706072%2C8.64) (2024), [Connecticut Department of Energy & Environmental Protection](https://deepmaps.ct.gov/maps/82672ae5f3764021b9a4804f524f928b/about) (2023)
+
+Municipal boundaries for New York, New Jersey, and Connecticut.
+
+### Fields
+| Name | Type | Description |
+| --- | --- | --- |
+| `name` | character | Name of municipality. |
+| `state` | character | 2-character state abbreviation. |
+
+### Geometry
+
+| Type | CRS |
+| --- | --- |
+| MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
+
+`Downloaded at 2024-09-06 17:10:24.887053 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -182,7 +159,7 @@ Contour lines spaced at 5-meter intervals.
 | --- | --- |
 | LINESTRING | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:05:40.097105 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:06.192176 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -203,9 +180,9 @@ From the Census: The area hydrography shapefile contains the geometry and attrib
 
 | Type | CRS |
 | --- | --- |
-| POLYGON | [EPSG:2263](https://epsg.io/2263) |
+| MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:05:40.389749 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:06.586279 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -226,9 +203,9 @@ From the US Census Bureau: 'The linear hydrography shapefile contains all linear
 
 | Type | CRS |
 | --- | --- |
-| LINESTRING | [EPSG:2263](https://epsg.io/2263) |
+| MULTILINESTRING | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:05:40.862336 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:07.078282 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -250,9 +227,9 @@ From the Census Bureau: "The content of the all roads shapefile includes primary
 
 | Type | CRS |
 | --- | --- |
-| LINESTRING | [EPSG:2263](https://epsg.io/2263) |
+| MULTILINESTRING | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:05:44.29273 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:12.737457 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -276,7 +253,7 @@ These are the 50 states of the US as well as DC and the U.S.'s territories and c
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:05:48.598762 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:14.118382 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -298,9 +275,9 @@ From the Census Bureau: "Primary roads are generally divided, limited-access hig
 
 | Type | CRS |
 | --- | --- |
-| LINESTRING | [EPSG:2263](https://epsg.io/2263) |
+| MULTILINESTRING | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:05:51.301554 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:16.371437 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -326,7 +303,7 @@ These represent the primary legal divisons of the states. In most states, these 
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:05:53.264573 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:17.601604 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -348,9 +325,9 @@ From the Census Bureau: "Primary roads are generally divided, limited-access hig
 
 | Type | CRS |
 | --- | --- |
-| LINESTRING | [EPSG:2263](https://epsg.io/2263) |
+| MULTILINESTRING | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:05:54.936956 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:18.715753 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -377,7 +354,7 @@ From the US Census Bureau:Standard block groups are clusters of blocks within th
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:05:55.295614 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:19.926408 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -403,7 +380,7 @@ From the US Census Bureau: Census Tracts are small, relatively permanent statist
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:05:56.963259 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:20.525604 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 

@@ -3,6 +3,7 @@ class_materials/*
 !class_materials/*.md
 renv/*
 *.pdf
+*.zip
 
 # History files
 .Rhistory

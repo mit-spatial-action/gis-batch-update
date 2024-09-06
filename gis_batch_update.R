@@ -5,20 +5,47 @@ source("config.R")
 # Spatial Helpers ====
 
 st_clip <- function(x, y) {
-  geo_type <- as.character(sf::st_geometry_type(x, by_geometry=FALSE))
-  x |>
+  init_type <- as.character(sf::st_geometry_type(x, by_geometry=FALSE))
+  clip <- x |>
     sf::st_set_agr("constant") |>
     sf::st_intersection(
       y |>
         sf::st_union() |>
         sf::st_geometry()
     ) |>
-    dplyr::filter(sf::st_geometry_type(geometry) == geo_type)
+    dplyr::filter(
+      as.character(sf::st_geometry_type(geometry)) %in% c(
+        init_type, 
+        stringr::str_c("MULTI", init_type, sep=""),
+        stringr::str_remove(init_type, "MULTI")
+      )
+    )
+  
+  clip_type_multi <- base::any(
+    stringr::str_detect(
+      clip |>
+        sf::st_geometry_type(by_geometry=TRUE) |>
+        as.character() |>
+        base::unique(), 
+      "MULTI"
+    )
+  )
+  
+  init_type_multi <- stringr::str_detect(init_type, "MULTI")
+  
+  if (clip_type_multi & !init_type_multi) {
+    cast_to <- stringr::str_c("MULTI", init_type, sep="")
+  } else {
+    cast_to <- init_type
+  }
+  
+  clip |>
+    sf::st_cast(cast_to)
 }
 
 # General Layers: Census ====
 
-get_counties <- function(counties_list, crs, year, meta_file) {
+get_counties <- function(counties_list, crs, year) {
   counties <- list()
   for (state in names(counties_list)) {
     counties[[state]] <- tigris::counties(state=state, year=year, cb=TRUE) |>
@@ -34,11 +61,10 @@ get_counties <- function(counties_list, crs, year, meta_file) {
       countyid = countyfp,
       name,
       state = stusps
-    ) |>
-    write_meta(CENSUS_META$counties, meta_file)
+    )
 }
 
-get_states <- function(state_list, crs, year, meta_file) {
+get_states <- function(state_list, crs, year) {
   tigris::states(year=year, cb = TRUE) |>
     dplyr::rename_with(tolower) |>
     dplyr::filter(stusps %in% state_list) |> 
@@ -47,11 +73,10 @@ get_states <- function(state_list, crs, year, meta_file) {
       geoid,
       abbrev = stusps,
       name
-    ) |>
-    write_meta(CENSUS_META$states, meta_file)
+    )
 }
 
-get_area_water <- function(counties_list, crs, year, meta_file) {
+get_area_water <- function(counties_list, crs, year) {
   df <- list()
   for (state in names(counties_list)) {
     for (county in counties_list[[state]]) {
@@ -64,11 +89,10 @@ get_area_water <- function(counties_list, crs, year, meta_file) {
     dplyr::select(
       id = hydroid,
       name = fullname
-    ) |>
-    write_meta(CENSUS_META$area_water, meta_file)
+    )
 }
 
-get_linear_water <- function(counties_list, crs, year, meta_file) {
+get_linear_water <- function(counties_list, crs, year) {
   df <- list()
   for (state in names(counties_list)) {
     for (county in counties_list[[state]]) {
@@ -81,11 +105,10 @@ get_linear_water <- function(counties_list, crs, year, meta_file) {
     dplyr::select(
       id = linearid,
       name = fullname
-    ) |>
-    write_meta(CENSUS_META$linear_water, meta_file)
+    )
 }
 
-get_roads <- function(counties_list, crs, year, meta_file) {
+get_roads <- function(counties_list, crs, year) {
   df <- list()
   for (state in names(counties_list)) {
     for (county in counties_list[[state]]) {
@@ -99,15 +122,13 @@ get_roads <- function(counties_list, crs, year, meta_file) {
       id = linearid,
       name = fullname,
       type = rttyp
-    ) |>
-    write_meta(CENSUS_META$roads, meta_file)
+    )
 }
 
-get_primary_roads <- function(states, crs, year, meta_file) {
+get_primary_roads <- function(states, crs, year) {
   tigris::primary_roads(year=year) |>
     dplyr::rename_with(tolower) |>
     sf::st_transform(crs) |>
-    sf::st_set_agr("constant") |>
     st_clip(
       states |>
         sf::st_geometry() |> 
@@ -117,11 +138,10 @@ get_primary_roads <- function(states, crs, year, meta_file) {
       id = linearid,
       name = fullname,
       type = rttyp
-    ) |>
-    write_meta(CENSUS_META$primary_roads, meta_file)
+    )
 }
 
-get_primary_secondary_roads <- function(counties_list, counties, crs, year, meta_file) {
+get_primary_secondary_roads <- function(counties_list, counties, crs, year) {
   df <- list()
   for (state in names(counties_list)) {
     df[[state]] <- tigris::primary_secondary_roads(state=state, year=year)
@@ -138,11 +158,10 @@ get_primary_secondary_roads <- function(counties_list, counties, crs, year, meta
       id = linearid,
       name = fullname,
       type = rttyp
-    ) |>
-    write_meta(CENSUS_META$primary_secondary_roads, meta_file)
+    )
 }
 
-get_block_groups <- function(state, crs, year, meta_file) {
+get_block_groups <- function(state, crs, year) {
   tigris::block_groups(state=state, year=year, cb=TRUE) |>
     dplyr::rename_with(tolower) |>
     sf::st_transform(crs) |>
@@ -153,11 +172,10 @@ get_block_groups <- function(state, crs, year, meta_file) {
       tractid = tractce,
       bgid = blkgrpce,
       name = namelsad
-    ) |>
-    write_meta(CENSUS_META$block_groups, meta_file)
+    )
 }
 
-get_tracts <- function(state, crs, year, meta_file) {
+get_tracts <- function(state, crs, year) {
   tigris::tracts(state=state, year=year, cb=TRUE) |>
     dplyr::rename_with(tolower) |>
     sf::st_transform(crs) |>
@@ -167,8 +185,7 @@ get_tracts <- function(state, crs, year, meta_file) {
       countyid = countyfp,
       tractid = tractce,
       name = namelsad
-    ) |>
-    write_meta(CENSUS_META$tracts, meta_file)
+    )
 }
   
 get_demographics <- function(geography, state, year, crs) {
@@ -220,7 +237,7 @@ get_watershed <- function(point, crs) {
     )
 }
 
-get_transit <- function(meta_file, crs, agency="MBTA") {
+get_transit <- function(agency, crs) {
   if (agency=="MTA") {
     gtfs <- tidytransit::read_gtfs("http://web.mta.info/developers/data/nyct/subway/google_transit.zip")
     route_ids <- gtfs$routes$route_id
@@ -254,7 +271,8 @@ get_transit <- function(meta_file, crs, agency="MBTA") {
           short_name = route_short_name
         ),
       by=dplyr::join_by(route_id)
-    )
+    ) |>
+    sf::st_transform(crs)
   
   gtfs$stops <- gtfs |>
     tidytransit::filter_stops(
@@ -270,21 +288,17 @@ get_transit <- function(meta_file, crs, agency="MBTA") {
     dplyr::select(
       id = stop_id,
       name = stop_name
-    )
+    )  |>
+    sf::st_transform(crs)
   list(
-    routes=routes |>
-      sf::st_transform(crs) |>
-      write_meta(place_meta$transit_routes, meta_file), 
-    stops=stops |>
-      sf::st_transform(crs) |>
-      write_meta(place_meta$transit_stops, meta_file)
+    routes=routes, 
+    stops=stops
   )
 }
 
 get_contours <- function(
     areas, 
-    crs, 
-    meta_file,
+    crs,
     filter_thresh = units::set_units(250, m)
 ) {
   dem <- elevatr::get_elev_raster(
@@ -315,13 +329,12 @@ get_contours <- function(
       length > filter_thresh
     ) |>
     dplyr::select(-length) |>
-    tibble::rowid_to_column("id") |>
-    write_meta(OTHER_META$contours, meta_file)
+    tibble::rowid_to_column("id")
 }
 
 # MA Layers ====
 
-get_ma_openspace <- function(crs, meta_file) {
+get_ma_openspace <- function(crs) {
   get_shp_from_remote_zip(
     "https://s3.us-east-1.amazonaws.com/download.massgis.digital.mass.gov/shapefiles/state/openspace.zip",
     shpfile="OPENSPACE_POLY.shp",
@@ -334,12 +347,11 @@ get_ma_openspace <- function(crs, meta_file) {
       name=site_name,
       owner=fee_owner,
       owner_type
-    ) |>
-    write_meta(MA_META$openspace, meta_file)
+    )
 }
 
 
-get_ma_munis <- function(crs, meta_file) {
+get_ma_munis <- function(crs) {
   get_from_arc("43664de869ca4b06a322c429473c65e5_0", crs = crs) |>
     dplyr::mutate(
       town = stringr::str_to_title(town),
@@ -348,11 +360,10 @@ get_ma_munis <- function(crs, meta_file) {
     dplyr::select(
       name = town, 
       state
-    ) |>
-    write_meta(MA_META$munis, meta_file)
+    )
 }
 
-get_ma_parcels <- function(muni_ids, crs, meta_file) {
+get_ma_parcels <- function(muni_ids, crs) {
   muni_list <- readr::read_csv('https://raw.githubusercontent.com/mit-spatial-action/who-owns-mass-processing/main/data/muni_ids.csv')
   parcels <- list()
   assess <- list()
@@ -437,14 +448,12 @@ get_ma_parcels <- function(muni_ids, crs, meta_file) {
   MA_META$parcels$sources[[1]]$year <- year
   MA_META$assess$sources[[1]]$year <- year
   list(
-    parcels = parcels |>
-      write_meta(MA_META$parcels, meta_file),
-    assess = assess |>
-      write_meta(MA_META$assess, meta_file)
+    parcels = parcels,
+    assess = assess
   )
 }
 
-get_ma_buildings <- function(muni_ids, crs, meta_file) {
+get_ma_buildings <- function(muni_ids, crs) {
   buildings <- list()
   for (id in muni_ids) {
     id <- as.integer(id)
@@ -460,12 +469,10 @@ get_ma_buildings <- function(muni_ids, crs, meta_file) {
   dplyr::bind_rows(buildings) |>
     dplyr::select(
       -dplyr::everything()
-    ) |>
-    dplyr::filter(sf::st_geometry_type(geometry) == "POLYGON") |>
-    write_meta(MA_META$buildings, meta_file)
+    )
 }
 
-get_ma_bikefac <- function(crs, meta_file) {
+get_ma_bikefac <- function(crs) {
   get_shp_from_remote_zip(
       "https://s3.us-east-1.amazonaws.com/download.massgis.digital.mass.gov/shapefiles/state/biketrails_arc.zip",
       shpfile="biketrails_arc/BIKETRAILS_ARC.shp",
@@ -478,15 +485,14 @@ get_ma_bikefac <- function(crs, meta_file) {
       name=local_name
     ) |>
     sf::st_zm() |>
-    sf::st_transform(crs) |>
-    write_meta(MA_META$bike_facilities, meta_file)
+    sf::st_transform(crs)
 }
 
 
 
 # NY Layers ====
 
-get_nyc_openspace <- function(crs, meta_file) {
+get_nyc_openspace <- function(crs) {
   sf::st_read(
       "https://nycopendata.socrata.com/api/geospatial/enfh-gkve?fourfour=enfh-gkve&accessType=DOWNLOAD&method=export&format=GeoJSON", 
       drivers="geojson"
@@ -497,11 +503,10 @@ get_nyc_openspace <- function(crs, meta_file) {
       id = globalid,
       name = signname,
       borough
-    ) |>
-    write_meta(NY_META$openspace, meta_file)
+    )
 }
 
-get_nyc_boroughs <- function(crs, meta_file) {
+get_nyc_boroughs <- function(crs) {
   sf::st_read(
     "https://data.cityofnewyork.us/api/geospatial/tqmj-j8zm?method=export&format=GeoJSON", 
     drivers="geojson"
@@ -511,11 +516,10 @@ get_nyc_boroughs <- function(crs, meta_file) {
     dplyr::select(
       id = boro_code,
       name = boro_name
-    ) |>
-    write_meta(NY_META$boroughs, meta_file)
+    )
 }
 
-get_nyc_buildings <- function(crs, meta_file) {
+get_nyc_buildings <- function(crs) {
   sf::st_read(
     "https://data.cityofnewyork.us/api/geospatial/qb5r-6dgf?method=export&format=GeoJSON", 
     drivers="geojson"
@@ -526,8 +530,7 @@ get_nyc_buildings <- function(crs, meta_file) {
     dplyr::select(
       id = globalid,
       height = heightroof
-    ) |>
-    write_meta(NY_META$buildings, meta_file)
+    )
 }
 
 get_ny_munis <- function(crs) {
@@ -560,7 +563,7 @@ get_nj_munis <- function(crs) {
     dplyr::mutate(state = "NJ")
 }
 
-get_ny_adjacent_munis <- function(crs, meta_file) {
+get_ny_adjacent_munis <- function(crs) {
   dplyr::bind_rows(
     get_ct_munis(crs) |>
       dplyr::select(
@@ -569,61 +572,61 @@ get_ny_adjacent_munis <- function(crs, meta_file) {
       ),
     get_ny_munis(crs),
     get_nj_munis(crs)
-    ) |>
-    write_meta(NY_META$munis, meta_file)
+    )
 }
 
-get_nyc_bikefac <- function(crs, meta_file) {
+get_nyc_bikefac <- function(crs) {
   readr::read_csv("https://data.cityofnewyork.us/api/views/mzxg-pwib/rows.csv?date=20240905&accessType=DOWNLOAD")|>
     dplyr::filter(status == "Current") |>
     dplyr::select(id=segmentid, geometry=the_geom, street) |>
     sf::st_as_sf(wkt="geometry", crs=4326) |>
-    sf::st_transform(crs) |>
-    write_meta(NY_META$bike_facilities, meta_file)
+    sf::st_transform(crs)
 }
 
-get_nyc_parcels <- function(crs, meta_file, pluto_version=PLUTO_VERSION) {
-  shp <- get_shp_from_remote_zip(
+get_nyc_parcels <- function(crs, pluto_version=PLUTO_VERSION) {
+  df <- get_shp_from_remote_zip(
     glue::glue("https://s-media.nyc.gov/agencies/dcp/assets/files/zip/data-tools/bytes/nyc_mappluto_{pluto_version}_shp.zip"),
     shpfile="MapPLUTO.shp",
     crs=crs
   ) |>
   dplyr::filter(stringr::str_starts(bbl, "2"))
   
+  parcels <- df |>
+    dplyr::select(
+      bbl
+    )
+  
+  assess <- df|>
+    sf::st_drop_geometry() |>
+    dplyr::select(
+      bbl,
+      landuse,
+      bldgclass,
+      addr = address,
+      borough = borough,
+      zip = zipcode,
+      owner = ownername,
+      bld_area = bldgarea,
+      res_area = resarea,
+      units = unitstotal,
+      lnd_val = assessland,
+      tot_val = assesstot,
+      year_built = yearbuilt
+    ) |>
+    dplyr::filter(borough == "BX") |>
+    dplyr::mutate(
+      year = as.numeric(stringr::str_extract(pluto_version, "^[0-9]+")) + 2000,
+      bld_val = tot_val - lnd_val
+    ) |>
+    dplyr::select(-c(tot_val))
+  
   list(
-    parcels = shp |>
-      dplyr::select(
-        bbl
-      ) |>
-      write_meta(NY_META$parcels, meta_file),
-    assess = shp |>
-      sf::st_drop_geometry() |>
-      dplyr::select(
-        bbl,
-        landuse,
-        bldgclass,
-        addr = address,
-        borough = borough,
-        zip = zipcode,
-        owner = ownername,
-        bld_area = bldgarea,
-        res_area = resarea,
-        units = unitstotal,
-        lnd_val = assessland,
-        tot_val = assesstot,
-        year_built = yearbuilt
-      ) |>
-      dplyr::filter(borough == "BX") |>
-      dplyr::mutate(
-        year = as.numeric(stringr::str_extract(pluto_version, "^[0-9]+")) + 2000,
-        bld_val = tot_val - lnd_val
-      ) |>
-      dplyr::select(-c(tot_val)) |>
-      write_meta(NY_META$assess, meta_file)
+    parcels = parcels,
+    assess = assess
   )
 }
 
-get_nyc_cso <- function(crs, meta_file, csos=NYC_CSOS) {
+get_nyc_cso <- function(crs, csos=NYC_CSOS) {
   get_shp_from_remote_zip(
     "https://drive.usercontent.google.com/download?id=0B4wX_nnTabwhTkNab3NUNjVyRjQ&export=download&authuser=0&resourcekey=0-M0_6EiKedv2gHoJEPqvMdQ",
     shpfile="combinedsewer_drainage_area.shp",
@@ -637,8 +640,7 @@ get_nyc_cso <- function(crs, meta_file, csos=NYC_CSOS) {
     dplyr::select(
       id,
       outfall
-    ) |>
-    write_meta(NY_META$cso_drainage, meta_file)
+    )
 }
 
 # Natural Earth Helpers ====
@@ -875,44 +877,30 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
     place_meta <- NY_META
     
     boroughs <- get_nyc_boroughs(
-      crs=crs, 
-      meta_file=meta_file
+      crs=crs
     ) |>
       sf::st_write(
         dsn=gpkg_path,
         layer=place_meta$boroughs$layer_name,
         delete_layer=TRUE
-      )
+      ) |>
+      write_meta(NY_META$boroughs, meta_file)
     
     clip_geom <- boroughs |>
       dplyr::filter(name == "Bronx") |>
       sf::st_union()
     
-    openspace <- get_nyc_openspace(
-      crs=crs,
-      meta_file=meta_file
-    )
+    rm(boroughs)
     
-    munis <- get_ny_adjacent_munis(
-      crs=crs, 
-      meta_file=meta_file
-    )
+    openspace <- get_nyc_openspace(crs=crs)
     
-    buildings <- get_nyc_buildings(
-      crs=crs, 
-      meta_file=meta_file
-      )
+    munis <- get_ny_adjacent_munis(crs=crs)
     
-    transit <- get_transit(
-      agency="MTA", 
-      crs=crs, 
-      meta_file=meta_file
-      )
+    buildings <- get_nyc_buildings(crs=crs)
     
-    bike_fac <- get_nyc_bikefac(
-      crs=crs, 
-      meta_file=meta_file
-      )
+    transit_agency <- "MTA"
+    
+    bike_fac <- get_nyc_bikefac(crs=crs)
     
   } else if (state == "MA") {
     state_list <- c("NY", "CT", "RI", "MA", "NH", "VT", "ME")
@@ -924,10 +912,7 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
     )
     place_meta <- MA_META
     
-    munis <- get_ma_munis(
-      crs=crs, 
-      meta_file=meta_file
-    )
+    munis <- get_ma_munis(crs=crs)
     
     clip_geom <- munis |>
       dplyr::filter(
@@ -935,34 +920,26 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
       ) |>
       sf::st_union()
     
-    openspace <- get_ma_openspace(
-      crs=crs,
-      meta_file=meta_file
-    )
+    openspace <- get_ma_openspace(crs=crs)
     
     buildings <- get_ma_buildings(
       MA_MUNIS, 
-      crs=crs, 
-      meta_file=meta_file
+      crs=crs
       )
     
-    transit <- get_transit(
-      agency="MBTA", 
-      crs=crs, 
-      meta_file=meta_file
-      )
+    transit_agency <- "MBTA"
     
     bike_fac <- get_ma_bikefac(
-      crs=crs, 
-      meta_file=meta_file
-      )
+      crs=crs
+      )  |>
+      write_meta(MA_META$bike_facilities, meta_file)
     
   } else {
     stop("Only NY and MA are supported.")
   }
   
   buildings  |>
-    st_clip(clip_geom) |>
+    write_meta(place_meta$buildings, meta_file) |>
     sf::st_write(
       dsn=gpkg_path,
       layer=place_meta$buildings$layer_name,
@@ -971,7 +948,13 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
   
   rm(buildings)
   
+  transit <- get_transit(
+    agency=transit_agency, 
+    crs=crs
+  )
+  
   transit$routes |>
+    write_meta(place_meta$transit_routes, meta_file) |>
     sf::st_write(
       dsn=gpkg_path,
       layer=place_meta$transit_routes$layer_name,
@@ -979,6 +962,7 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
     )
   
   transit$stops |>
+    write_meta(place_meta$transit_stops, meta_file) |>
     sf::st_write(
       dsn=gpkg_path,
       layer=place_meta$transit_stops$layer_name,
@@ -989,6 +973,7 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
   
   bike_fac |>
     st_clip(clip_geom) |>
+    write_meta(place_meta$openspace, meta_file) |>
     sf::st_write(
       dsn=gpkg_path,
       layer=place_meta$bike_facilities$layer_name,
@@ -1009,6 +994,7 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
   rm(openspace)
   
   munis |>
+    write_meta(place_meta$munis, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 
       layer=place_meta$munis$layer_name, 
@@ -1019,9 +1005,9 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
   
   get_contours(
     clip_geom,
-    crs=crs,
-    meta_file=meta_file
+    crs=crs
   )  |>
+    write_meta(OTHER_META$contours, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 
       layer=OTHER_META$contours$layer_name, 
@@ -1031,10 +1017,10 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
   get_area_water(
     counties_list=counties_list,
     crs=crs,
-    year=year,
-    meta_file=meta_file
+    year=year
     ) |>
     st_clip(clip_geom) |>
+    write_meta(CENSUS_META$area_water, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 
       layer=CENSUS_META$area_water$layer_name, 
@@ -1044,10 +1030,10 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
   get_linear_water(
       counties_list=counties_list,
       crs=crs,
-      year=year,
-      meta_file=meta_file
+      year=year
       )  |>
     st_clip(clip_geom) |>
+    write_meta(CENSUS_META$linear_water, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 
       layer=CENSUS_META$linear_water$layer_name, 
@@ -1057,10 +1043,10 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
   get_roads(
       counties_list=counties_list,
       crs=crs,
-      year=year,
-      meta_file=meta_file
+      year=year
     ) |>
     st_clip(clip_geom) |>
+    write_meta(CENSUS_META$roads, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 
       layer=CENSUS_META$roads$layer_name, 
@@ -1071,18 +1057,18 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
     states=get_states(
         state_list=state_list,
         crs=crs,
-        year=year,
-        meta_file=meta_file
+        year=year
       ) |>
+      write_meta(CENSUS_META$states, meta_file) |>
       sf::st_write(
         dsn=gpkg_path, 
         layer=CENSUS_META$states$layer_name, 
         delete_layer=TRUE
         ),
     crs=crs,
-    year=year,
-    meta_file=meta_file
+    year=year
     ) |>
+    write_meta(CENSUS_META$primary_roads, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 
       layer=CENSUS_META$primary_roads$layer_name, 
@@ -1094,18 +1080,18 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
     counties=get_counties(
       counties_list=counties_list,
       crs=crs,
-      year=year,
-      meta_file=meta_file
+      year=year
       ) |>
+      write_meta(CENSUS_META$counties, meta_file) |>
       sf::st_write(
         dsn=gpkg_path, 
         layer=CENSUS_META$counties$layer_name, 
         delete_layer=TRUE
         ),
     crs=crs,
-    year=year,
-    meta_file=meta_file
-    ) |>
+    year=year
+    ) |> 
+    write_meta(CENSUS_META$primary_secondary_roads, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 
       layer=CENSUS_META$primary_secondary_roads$layer_name, 
@@ -1115,10 +1101,10 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
   get_block_groups(
     state=state,
     crs=crs,
-    year=year,
-    meta_file=meta_file
+    year=year
     ) |>
     st_clip(clip_geom) |>
+    write_meta(CENSUS_META$block_groups, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 
       layer=CENSUS_META$block_groups$layer_name, 
@@ -1128,10 +1114,10 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
   get_tracts(
     state=state,
     crs=crs,
-    year=year,
-    meta_file=meta_file
+    year=year
     ) |>
     st_clip(clip_geom) |>
+    write_meta(CENSUS_META$tracts, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 
       layer=CENSUS_META$tracts$layer_name, 
@@ -1215,8 +1201,8 @@ get_supp_data <- function(
   
   get_nyc_cso(
       crs=ny_crs, 
-      meta_file=meta_file
     ) |>
+    write_meta(NY_META$cso_drainage, meta_file) |>
     sf::st_write(
       dsn=file.path(
         out_path, 
@@ -1229,12 +1215,10 @@ get_supp_data <- function(
       delete_layer=TRUE
     )
   
-  parcels <- get_nyc_parcels(
-    crs=ny_crs,
-    meta_file=meta_file
-    )
+  parcels <- get_nyc_parcels(crs=ny_crs)
 
   parcels$assess |>
+    write_meta(NY_META$assess, meta_file) |>
     readr::write_csv(
       file=file.path(
         out_path,
@@ -1248,6 +1232,7 @@ get_supp_data <- function(
     )
 
   parcels$parcels |>
+    write_meta(NY_META$parcels, meta_file) |>
     sf::st_write(
       dsn=file.path(
         out_path, 
@@ -1266,11 +1251,11 @@ get_supp_data <- function(
   
   parcels <- get_ma_parcels(
     MA_MUNIS,
-    crs=ma_crs,
-    meta_file=meta_file
+    crs=ma_crs
     )
 
   parcels$assess |>
+    write_meta(MA_META$assess, meta_file) |>
     readr::write_csv(
       file=file.path(
         out_path,
@@ -1284,6 +1269,7 @@ get_supp_data <- function(
     )
   
   parcels$parcels |>
+    write_meta(MA_META$parcels, meta_file) |>
     sf::st_write(
       dsn=file.path(
         out_path, 

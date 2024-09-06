@@ -1,49 +1,25 @@
 # MA Data Dictionary
 
-## Municipalities (`munis`) — 🌏
+## Bike Facilities (`bike_facilities`) — 🌏
 
-### [Massachusetts Bureau of Geographic Information](https://gis.data.mass.gov/datasets/43664de869ca4b06a322c429473c65e5_0/explore) (2024)
+### [Massachusetts Bureau of Geographic Information](https://www.mass.gov/info-details/massgis-data-bicycle-trails) (2023)
 
-Municipal boundaries for Massachusetts.
-
-### Fields
-| Name | Type | Description |
-| --- | --- | --- |
-| `name` | character | Name of municipality. |
-| `state` | character | 2-character state abbreviation. |
-
-### Geometry
-
-| Type | CRS |
-| --- | --- |
-| MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
-
-`Downloaded at 2024-09-06 12:06:02.34257 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
-
----
-
-
-## Protected and Recreational Open Space (`openspace`) — 🌏
-
-### [Massachusetts Bureau of Geographic Information](https://www.mass.gov/info-details/massgis-data-protected-and-recreational-openspace) (2024)
-
-According to MassGIS, the "the boundaries of conservation lands and outdoor recreational facilities in Massachusetts".
+According to MassGIS, "represents trails which all permit bicycle travel.
 
 ### Fields
 | Name | Type | Description |
 | --- | --- | --- |
 | `id` | integer | Unique identifier. |
-| `name` | character | Site name. |
-| `owner` | character | Owner of the land. |
-| `owner_type` | character | Category for the owner. If you're interested, check out [MassGIS's definitions](https://www.mass.gov/info-details/massgis-data-protected-and-recreational-openspace). |
+| `name` | character | Route name. |
+| `type` | character | Facility type (shared use path, bike lane, separated bike lane, or bicycle/pedestrian priority roadway). |
 
 ### Geometry
 
 | Type | CRS |
 | --- | --- |
-| MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
+| MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:06:33.867119 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:56.978595 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -58,9 +34,9 @@ Building footprints in a subset of Massachusetts municipalities
 
 | Type | CRS |
 | --- | --- |
-| POLYGON | [EPSG:2249](https://epsg.io/2249) |
+| GEOMETRY | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:06:36.788078 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:11:56.979261 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -85,7 +61,7 @@ Train and commuter rail routes from the MBTA's [GTFS](https://gtfs.org/#) feed. 
 | --- | --- |
 | MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:06:43.091865 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:12:03.738442 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -108,23 +84,24 @@ Train and commuter rail stops from the MBTA's [GTFS](https://gtfs.org/#) feed. I
 | --- | --- |
 | POINT | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:06:43.095179 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:12:03.775347 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
 
-## Bike Facilities (`bike_facilities`) — 🌏
+## Protected and Recreational Open Space (`openspace`) — 🌏
 
-### [Massachusetts Bureau of Geographic Information](https://www.mass.gov/info-details/massgis-data-bicycle-trails) (2023)
+### [Massachusetts Bureau of Geographic Information](https://www.mass.gov/info-details/massgis-data-protected-and-recreational-openspace) (2024)
 
-According to MassGIS, "represents trails which all permit bicycle travel.
+According to MassGIS, the "the boundaries of conservation lands and outdoor recreational facilities in Massachusetts".
 
 ### Fields
 | Name | Type | Description |
 | --- | --- | --- |
 | `id` | integer | Unique identifier. |
-| `name` | character | Route name. |
-| `type` | character | Facility type (shared use path, bike lane, separated bike lane, or bicycle/pedestrian priority roadway). |
+| `name` | character | Site name. |
+| `owner` | NULL | Owner of the land. |
+| `owner_type` | NULL | Category for the owner. If you're interested, check out [MassGIS's definitions](https://www.mass.gov/info-details/massgis-data-protected-and-recreational-openspace). |
 
 ### Geometry
 
@@ -132,7 +109,30 @@ According to MassGIS, "represents trails which all permit bicycle travel.
 | --- | --- |
 | MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:06:44.169962 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:12:06.596224 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+
+---
+
+
+## Municipalities (`munis`) — 🌏
+
+### [Massachusetts Bureau of Geographic Information](https://gis.data.mass.gov/datasets/43664de869ca4b06a322c429473c65e5_0/explore) (2024)
+
+Municipal boundaries for Massachusetts.
+
+### Fields
+| Name | Type | Description |
+| --- | --- | --- |
+| `name` | character | Name of municipality. |
+| `state` | character | 2-character state abbreviation. |
+
+### Geometry
+
+| Type | CRS |
+| --- | --- |
+| MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
+
+`Downloaded at 2024-09-06 17:12:08.645582 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -155,7 +155,7 @@ Contour lines spaced at 5-meter intervals.
 | --- | --- |
 | LINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:07:38.408827 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:12:42.724158 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -176,9 +176,9 @@ From the Census: The area hydrography shapefile contains the geometry and attrib
 
 | Type | CRS |
 | --- | --- |
-| POLYGON | [EPSG:2249](https://epsg.io/2249) |
+| MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:07:38.726426 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:12:43.382713 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -199,9 +199,9 @@ From the US Census Bureau: 'The linear hydrography shapefile contains all linear
 
 | Type | CRS |
 | --- | --- |
-| LINESTRING | [EPSG:2249](https://epsg.io/2249) |
+| MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:07:39.504469 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:12:44.345762 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -223,9 +223,9 @@ From the Census Bureau: "The content of the all roads shapefile includes primary
 
 | Type | CRS |
 | --- | --- |
-| LINESTRING | [EPSG:2249](https://epsg.io/2249) |
+| MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:07:43.480436 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:12:58.306531 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -249,7 +249,7 @@ These are the 50 states of the US as well as DC and the U.S.'s territories and c
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:07:57.241707 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:12:59.771346 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -271,9 +271,9 @@ From the Census Bureau: "Primary roads are generally divided, limited-access hig
 
 | Type | CRS |
 | --- | --- |
-| LINESTRING | [EPSG:2249](https://epsg.io/2249) |
+| MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:08:00.440181 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:13:02.016343 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -299,7 +299,7 @@ These represent the primary legal divisons of the states. In most states, these 
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:08:01.656539 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:13:02.71079 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -321,9 +321,9 @@ From the Census Bureau: "Primary roads are generally divided, limited-access hig
 
 | Type | CRS |
 | --- | --- |
-| LINESTRING | [EPSG:2249](https://epsg.io/2249) |
+| MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:08:03.82229 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:13:03.21316 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -350,7 +350,7 @@ From the US Census Bureau:Standard block groups are clusters of blocks within th
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:08:03.983586 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:13:04.31145 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -376,7 +376,7 @@ From the US Census Bureau: Census Tracts are small, relatively permanent statist
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:08:05.659629 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:13:04.674918 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 

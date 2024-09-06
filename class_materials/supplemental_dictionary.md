@@ -18,7 +18,7 @@ Watersheds based on 12-digit hydrologic units, which represent the area of the l
 | --- | --- |
 | POLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:08:15.37561 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:14:06.233074 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -41,7 +41,7 @@ Watersheds based on 12-digit hydrologic units, which represent the area of the l
 | --- | --- |
 | POLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:08:15.385222 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:14:06.243028 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -64,29 +64,7 @@ The drainage area associated with CSO outfalls
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:08:17.683941 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
-
----
-
-
-## Parcels (`bronx_parcels`) — 🌏
-
-### [NYC Planning PLUTO/MapPLUTO](https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page) (2024)
-
-Parcel (tax lot) boundaries for the Bronx.
-
-### Fields
-| Name | Type | Description |
-| --- | --- | --- |
-| `bbl` | numeric | Unique identifier. |
-
-### Geometry
-
-| Type | CRS |
-| --- | --- |
-| MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
-
-`Downloaded at 2024-09-06 12:09:03.424908 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:14:08.792621 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -113,36 +91,36 @@ Parcel (tax lot) attributes for the Bronx.
 | `bld_val` | numeric | Assessed value of building. |
 | `year_built` | integer | Year building built. |
 
-`Downloaded at 2024-09-06 12:09:03.436269 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:14:54.653249 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
 
-## Parcels (`camberville_parcels`) — 🌏
+## Parcels (`bronx_parcels`) — 🌏
 
-### [Massachusetts Bureau of Geographic Information](https://www.mass.gov/info-details/massgis-data-property-tax-parcels) (2024)
+### [NYC Planning PLUTO/MapPLUTO](https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page) (2024)
 
-Standardized assessors parcels containing property boundaries for Cambridge and Somerville.
+Parcel (tax lot) boundaries for the Bronx.
 
 ### Fields
 | Name | Type | Description |
 | --- | --- | --- |
-| `loc_id` | character | Unique identifier. |
+| `bbl` | numeric | Unique identifier. |
 
 ### Geometry
 
 | Type | CRS |
 | --- | --- |
-| MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
+| MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:09:12.030575 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:14:54.676026 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
 
 ## Assessors' Tables (`camberville_assess`)
 
-### [Massachusetts Bureau of Geographic Information](https://www.mass.gov/info-details/massgis-data-property-tax-parcels) (2024)
+### 
 
 Standardized database information from Cambridge and Somerville assessors.
 
@@ -166,7 +144,29 @@ Standardized database information from Cambridge and Somerville assessors.
 | `bld_area` | numeric | Building area. |
 | `res_area` | numeric | Residential area in building. |
 
-`Downloaded at 2024-09-06 12:09:12.032333 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:15:02.864673 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+
+---
+
+
+## Parcels (`camberville_parcels`) — 🌏
+
+### 
+
+Standardized assessors parcels containing property boundaries for Cambridge and Somerville.
+
+### Fields
+| Name | Type | Description |
+| --- | --- | --- |
+| `loc_id` | character | Unique identifier. |
+
+### Geometry
+
+| Type | CRS |
+| --- | --- |
+| MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
+
+`Downloaded at 2024-09-06 17:15:02.883636 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -206,7 +206,7 @@ Assorted demographic variables.
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 12:09:17.435037 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:15:08.512569 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -246,7 +246,7 @@ Assorted demographic variables.
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 12:09:25.617968 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-06 17:15:15.04655 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
