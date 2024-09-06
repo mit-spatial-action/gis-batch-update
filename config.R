@@ -1,4 +1,4 @@
-BASE_PATH <- "gis_data"
+BASE_PATH <- "class_materials"
 
 CENSUS_YEAR <- 2022
 

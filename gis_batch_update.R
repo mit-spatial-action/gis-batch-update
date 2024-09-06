@@ -2,6 +2,20 @@ source('https://raw.githubusercontent.com/ographiesresearch/urbanplanR/main/R/gl
 source('https://raw.githubusercontent.com/ographiesresearch/urbanplanR/main/R/acs.R')
 source("config.R")
 
+# Spatial Helpers ====
+
+st_clip <- function(x, y) {
+  geo_type <- as.character(sf::st_geometry_type(x, by_geometry=FALSE))
+  x |>
+    sf::st_set_agr("constant") |>
+    sf::st_intersection(
+      y |>
+        sf::st_union() |>
+        sf::st_geometry()
+    ) |>
+    dplyr::filter(sf::st_geometry_type(geometry) == geo_type)
+}
+
 # General Layers: Census ====
 
 get_counties <- function(counties_list, crs, year, meta_file) {
@@ -94,12 +108,11 @@ get_primary_roads <- function(states, crs, year, meta_file) {
     dplyr::rename_with(tolower) |>
     sf::st_transform(crs) |>
     sf::st_set_agr("constant") |>
-    sf::st_intersection(
+    st_clip(
       states |>
         sf::st_geometry() |> 
         sf::st_union()
       ) |>
-    dplyr::filter(sf::st_geometry_type(geometry) == "LINESTRING") |>
     dplyr::select(
       id = linearid,
       name = fullname,
@@ -116,13 +129,11 @@ get_primary_secondary_roads <- function(counties_list, counties, crs, year, meta
   dplyr::bind_rows(df) |>
     dplyr::rename_with(tolower) |>
     sf::st_transform(crs) |>
-    sf::st_set_agr("constant") |>
-    sf::st_intersection(
+    st_clip(
       counties |> 
         sf::st_geometry() |> 
         sf::st_union()
       ) |>
-    dplyr::filter(sf::st_geometry_type(geometry) == "LINESTRING") |>
     dplyr::select(
       id = linearid,
       name = fullname,
@@ -829,17 +840,6 @@ get_naturalearth_data <- function(base_path, out_dir, gpkg, meta_file, crs, scal
   return(invisible(NULL))
 }
 
-
-st_clip <- function(x, y) {
-  x |>
-    sf::st_set_agr("constant") |>
-    sf::st_intersection(
-      y |>
-        sf::st_union() |>
-        sf::st_geometry()
-      )
-}
-
 get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file) {
   gpkg_path <- base::file.path(base_path, out_dir, gpkg)
   meta_path <- base::file.path(base_path, out_dir, meta_file)
@@ -1150,8 +1150,8 @@ get_supp_data <- function(
     ny_crs
     ) {
   
-  ny_gpkg_path <- base::file.path(base_path, out_dir, ny_gpkg)
-  ma_gpkg_path <- base::file.path(base_path, out_dir, ma_gpkg)
+  ny_gpkg_path <- base::file.path(base_path, ny_gpkg)
+  ma_gpkg_path <- base::file.path(base_path, ma_gpkg)
   meta_path <- base::file.path(base_path, meta_file)
   
   out_path <- file.path(base_path, out_dir)
@@ -1396,7 +1396,7 @@ runner <- function() {
   
   get_supp_data(
     base_path=BASE_PATH,
-    out_dir="",
+    out_dir=SUPP_FILENAME,
     ma_gpkg=stringr::str_c(MA_FILENAME, "gpkg", sep="."),
     ny_gpkg=stringr::str_c(NY_FILENAME, "gpkg", sep="."),
     year=CENSUS_YEAR, 

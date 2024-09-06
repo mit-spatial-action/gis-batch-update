@@ -1,6 +1,6 @@
 .DS_Store
-gis_data/*
-!gis_data/*.md
+class_materials/*
+!class_materials/*.md
 renv/*
 *.pdf
 
