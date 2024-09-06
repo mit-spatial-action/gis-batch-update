@@ -160,7 +160,7 @@ get_tracts <- function(state, crs, year, meta_file) {
     write_meta(CENSUS_META$tracts, meta_file)
 }
   
-get_demographics <- function(geography, state, year, crs, meta_file) {
+get_demographics <- function(geography, state, year, crs) {
   vars <- c(
     "tot_lbr" = "B08301_001",
     "bik_lbr" = "B08301_018",
@@ -191,8 +191,7 @@ get_demographics <- function(geography, state, year, crs, meta_file) {
     sf::st_transform(crs) |>
     dplyr::rename(
       geoid=unit_id
-    ) |>
-    write_meta(CENSUS_META$demographics, meta_file)
+    )
 }
   
 # General Layers: Other ====
@@ -1271,7 +1270,7 @@ get_supp_data <- function(
     meta_file=meta_file
     )
 
-  ASSESS <<- parcels$assess |>
+  parcels$assess |>
     readr::write_csv(
       file=file.path(
         out_path,
@@ -1297,8 +1296,7 @@ get_supp_data <- function(
     geography="cbg",
     state="MA",
     year=year,
-    crs=ma_crs,
-    meta_file=meta_file
+    crs=ma_crs
   ) |>
     st_clip(
       sf::st_read(
@@ -1322,8 +1320,7 @@ get_supp_data <- function(
     geography="cbg",
     state="NY",
     year=year,
-    crs=ny_crs,
-    meta_file=meta_file
+    crs=ny_crs
   ) |>
     st_clip(
       sf::st_read(
