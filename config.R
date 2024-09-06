@@ -1,5 +1,4 @@
-BASE_PATH <- "gis"
-BASEDATA_DIR <- "basedata"
+BASE_PATH <- "gis_data"
 
 CENSUS_YEAR <- 2022
 

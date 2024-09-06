@@ -1257,9 +1257,13 @@ get_supp_data <- function(
       delete_layer=TRUE
     )
   
-  file.download(
-    "https://s-media.nyc.gov/agencies/dcp/assets/files/pdf/data-tools/bytes/pluto_datadictionary.pdf"
+  utils::download.file(
+    "https://s-media.nyc.gov/agencies/dcp/assets/files/pdf/data-tools/bytes/pluto_datadictionary.pdf",
+    file.path(
+      out_path,
+      "pluto_metadata.pdf"
     )
+  )
   
   parcels <- get_ma_parcels(
     MA_MUNIS,

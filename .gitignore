@@ -1,8 +1,7 @@
 .DS_Store
-
-gis/*
-
+gis_data/*
 renv/*
+*.pdf
 
 # History files
 .Rhistory
