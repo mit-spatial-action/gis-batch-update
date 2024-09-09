@@ -19,7 +19,7 @@ According to MassGIS, "represents trails which all permit bicycle travel.
 | --- | --- |
 | MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:11:56.978595 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:50:35.98691 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -36,7 +36,7 @@ Building footprints in a subset of Massachusetts municipalities
 | --- | --- |
 | GEOMETRY | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:11:56.979261 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:50:35.987527 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -61,7 +61,7 @@ Train and commuter rail routes from the MBTA's [GTFS](https://gtfs.org/#) feed. 
 | --- | --- |
 | MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:12:03.738442 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:50:42.708502 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -84,7 +84,7 @@ Train and commuter rail stops from the MBTA's [GTFS](https://gtfs.org/#) feed. I
 | --- | --- |
 | POINT | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:12:03.775347 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:50:42.745091 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -109,7 +109,7 @@ According to MassGIS, the "the boundaries of conservation lands and outdoor recr
 | --- | --- |
 | MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:12:06.596224 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:50:45.457184 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -132,7 +132,7 @@ Municipal boundaries for Massachusetts.
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:12:08.645582 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:50:47.46761 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -155,7 +155,7 @@ Contour lines spaced at 5-meter intervals.
 | --- | --- |
 | LINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:12:42.724158 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:26.774656 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -176,9 +176,9 @@ From the Census: The area hydrography shapefile contains the geometry and attrib
 
 | Type | CRS |
 | --- | --- |
-| MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
+| POLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:12:43.382713 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:27.741556 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -199,9 +199,9 @@ From the US Census Bureau: 'The linear hydrography shapefile contains all linear
 
 | Type | CRS |
 | --- | --- |
-| MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
+| LINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:12:44.345762 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:29.5741 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -225,7 +225,7 @@ From the Census Bureau: "The content of the all roads shapefile includes primary
 | --- | --- |
 | MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:12:58.306531 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:46.309844 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -249,7 +249,7 @@ These are the 50 states of the US as well as DC and the U.S.'s territories and c
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:12:59.771346 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:47.74091 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -273,7 +273,7 @@ From the Census Bureau: "Primary roads are generally divided, limited-access hig
 | --- | --- |
 | MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:13:02.016343 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:50.040382 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -299,7 +299,7 @@ These represent the primary legal divisons of the states. In most states, these 
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:13:02.71079 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:50.97443 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -323,7 +323,7 @@ From the Census Bureau: "Primary roads are generally divided, limited-access hig
 | --- | --- |
 | MULTILINESTRING | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:13:03.21316 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:51.45527 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -350,7 +350,7 @@ From the US Census Bureau:Standard block groups are clusters of blocks within th
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:13:04.31145 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:52.894947 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -376,7 +376,7 @@ From the US Census Bureau: Census Tracts are small, relatively permanent statist
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:13:04.674918 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:53.322999 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 

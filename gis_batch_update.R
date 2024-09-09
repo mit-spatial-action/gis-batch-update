@@ -1019,7 +1019,6 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
     crs=crs,
     year=year
     ) |>
-    st_clip(clip_geom) |>
     write_meta(CENSUS_META$area_water, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 
@@ -1032,7 +1031,6 @@ get_base_data <- function(state, base_path, out_dir, gpkg, crs, year, meta_file)
       crs=crs,
       year=year
       )  |>
-    st_clip(clip_geom) |>
     write_meta(CENSUS_META$linear_water, meta_file) |>
     sf::st_write(
       dsn=gpkg_path, 

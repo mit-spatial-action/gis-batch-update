@@ -18,7 +18,7 @@ Watersheds based on 12-digit hydrologic units, which represent the area of the l
 | --- | --- |
 | POLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:14:06.233074 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:59.792856 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -41,7 +41,7 @@ Watersheds based on 12-digit hydrologic units, which represent the area of the l
 | --- | --- |
 | POLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 17:14:06.243028 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:52:00.39618 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -64,7 +64,7 @@ The drainage area associated with CSO outfalls
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 17:14:08.792621 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:52:02.725076 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -91,7 +91,7 @@ Parcel (tax lot) attributes for the Bronx.
 | `bld_val` | numeric | Assessed value of building. |
 | `year_built` | integer | Year building built. |
 
-`Downloaded at 2024-09-06 17:14:54.653249 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:52:44.09742 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -113,7 +113,7 @@ Parcel (tax lot) boundaries for the Bronx.
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 17:14:54.676026 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:52:44.12106 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -144,7 +144,7 @@ Standardized database information from Cambridge and Somerville assessors.
 | `bld_area` | numeric | Building area. |
 | `res_area` | numeric | Residential area in building. |
 
-`Downloaded at 2024-09-06 17:15:02.864673 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:52:52.540961 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -166,7 +166,7 @@ Standardized assessors parcels containing property boundaries for Cambridge and 
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:15:02.883636 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:52:52.562532 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -206,7 +206,7 @@ Assorted demographic variables.
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2249](https://epsg.io/2249) |
 
-`Downloaded at 2024-09-06 17:15:08.512569 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:52:57.187962 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -246,7 +246,7 @@ Assorted demographic variables.
 | --- | --- |
 | MULTIPOLYGON | [EPSG:2263](https://epsg.io/2263) |
 
-`Downloaded at 2024-09-06 17:15:15.04655 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:53:05.304765 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 

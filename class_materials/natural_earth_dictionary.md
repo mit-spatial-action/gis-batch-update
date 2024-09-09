@@ -19,7 +19,7 @@ Soviereign states, though Natural Earth shows whay they call "_de facto_ boundar
 | --- | --- |
 | MULTIPOLYGON | [EPSG:4326](https://epsg.io/4326) |
 
-`Downloaded at 2024-09-06 17:13:06.399391 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:55.022649 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -36,7 +36,7 @@ From NE: Derived from 10m coastline. Continental polygons broken into smaller, c
 | --- | --- |
 | MULTIPOLYGON | [EPSG:4326](https://epsg.io/4326) |
 
-`Downloaded at 2024-09-06 17:13:07.162403 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:55.828117 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -59,7 +59,7 @@ From NE: Generalized from 10 million lakes theme. The 10 million lakes primarily
 | --- | --- |
 | POLYGON | [EPSG:4326](https://epsg.io/4326) |
 
-`Downloaded at 2024-09-06 17:13:07.809304 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:56.486061 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -82,7 +82,7 @@ Playas---large, occasionally flooded flats in deserts---and salt pans---ground c
 | --- | --- |
 | MULTIPOLYGON | [EPSG:4326](https://epsg.io/4326) |
 
-`Downloaded at 2024-09-06 17:13:08.164333 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:56.862737 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -99,7 +99,7 @@ Glaciers and recently de-glaciated areas.
 | --- | --- |
 | POLYGON | [EPSG:4326](https://epsg.io/4326) |
 
-`Downloaded at 2024-09-06 17:13:08.871572 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:57.593479 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -122,7 +122,7 @@ Linear drainages and lake centerlines.
 | --- | --- |
 | MULTILINESTRING | [EPSG:4326](https://epsg.io/4326) |
 
-`Downloaded at 2024-09-06 17:13:09.716545 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:58.550419 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -139,7 +139,7 @@ A grid of latitude/longitude lines spaced by 15°.
 | --- | --- |
 | LINESTRING | [EPSG:4326](https://epsg.io/4326) |
 
-`Downloaded at 2024-09-06 17:13:09.740264 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:58.57986 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -156,7 +156,7 @@ A grid of latitude/longitude lines spaced by 30°.
 | --- | --- |
 | LINESTRING | [EPSG:4326](https://epsg.io/4326) |
 
-`Downloaded at 2024-09-06 17:13:09.762239 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:58.629499 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -173,7 +173,7 @@ Tissot's indicatrix circles.
 | --- | --- |
 | POLYGON | [EPSG:4326](https://epsg.io/4326) |
 
-`Downloaded at 2024-09-06 17:13:10.127282 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:59.020818 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
@@ -190,7 +190,7 @@ A bounding box extending from -180° to 180° longitude and -90° to 90° latitu
 | --- | --- |
 | LINESTRING | [EPSG:4326](https://epsg.io/4326) |
 
-`Downloaded at 2024-09-06 17:13:10.136694 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
+`Downloaded at 2024-09-09 09:51:59.032975 by ericrobskyhuntley on Erics-MacBook-Pro-2.local.`
 
 ---
 
