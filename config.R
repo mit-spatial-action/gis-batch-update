@@ -461,7 +461,7 @@ MA_META <- list(
         desc="Assessed value of building."
       ),
       list(
-        name="bld_val",
+        name="lnd_val",
         desc="Assessed value of land."
       ),
       list(

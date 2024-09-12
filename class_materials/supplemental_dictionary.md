@@ -129,7 +129,7 @@ Standardized database information from Cambridge and Somerville assessors.
 | --- | --- | --- |
 | `loc_id` | character | Unique identifier of parcel, used for joining. |
 | `bld_val` | numeric | Assessed value of building. |
-| `bld_val` | numeric | Assessed value of land. |
+| `lnd_val` | numeric | Assessed value of land. |
 | `year` | integer | Fiscal year of record. |
 | `ls_date` | character | Last sale date. |
 | `ls_price` | numeric | Last sale price. |
